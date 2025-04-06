@@ -1,0 +1,52 @@
+<mat-card>
+  <mat-toolbar color="primary">
+    <span>İmtahanların Siyahısı</span>
+    <span class="spacer"></span>
+    <a mat-button color="primary" class="add-button" routerLink="/exams/add">
+      <mat-icon>add</mat-icon> Yeni İmtahan
+    </a>
+  </mat-toolbar>
+
+  <table mat-table [dataSource]="exams" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let exam">{{ exam.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef>Dərs</th>
+      <td mat-cell *matCellDef="let exam">{{ getSubjectName(exam.subjectId) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="student">
+      <th mat-header-cell *matHeaderCellDef>Şagird</th>
+      <td mat-cell *matCellDef="let exam">{{ getStudentFullName(exam.studentId) }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Tarix</th>
+      <td mat-cell *matCellDef="let exam">{{ exam.examDate | date:'dd.MM.yyyy' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="grade">
+      <th mat-header-cell *matHeaderCellDef>Qiymət</th>
+      <td mat-cell *matCellDef="let exam">{{ exam.grade }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Əməliyyatlar</th>
+      <td mat-cell *matCellDef="let exam">
+        <button mat-icon-button color="primary" [routerLink]="['/exams/edit', exam.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteExam(exam.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-card>

@@ -1,0 +1,53 @@
+<mat-card>
+  <h2>İmtahan Redaktə Et</h2>
+  <form [formGroup]="examForm" (ngSubmit)="updateExam()">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Dərs</mat-label>
+      <mat-select formControlName="subjectId">
+        <mat-option value="">Seçin</mat-option>
+        <mat-option *ngFor="let subject of availableSubjects" [value]="subject.id">
+          {{ subject.name }} ({{ subject.class }} sinif)
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="examForm.get('subjectId')?.invalid && examForm.get('subjectId')?.touched">
+        Dərs seçilməlidir
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Şagird</mat-label>
+      <mat-select formControlName="studentId">
+        <mat-option value="">Seçin</mat-option>
+        <mat-option *ngFor="let student of filteredStudents" [value]="student.id">
+          {{ student.name }} {{ student.surname }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="examForm.get('studentId')?.invalid && examForm.get('studentId')?.touched">
+        Şagird seçilməlidir
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>İmtahan Tarixi</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="examDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="examForm.get('examDate')?.hasError('required')">Tarix vacibdir</mat-error>
+      <mat-error *ngIf="examForm.get('examDate')?.hasError('futureDate')">Gələcək tarix ola bilməz</mat-error>
+      <mat-error *ngIf="examForm.get('examDate')?.hasError('tooOld')">Yalnız son 1 ay daxilindəki tarixlərə icazə verilir</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Qiymət</mat-label>
+      <input matInput type="number" formControlName="grade" min="0" max="5" />
+      <mat-error *ngIf="examForm.get('grade')?.invalid && examForm.get('grade')?.touched">
+        Qiymət 0-5 aralığında olmalıdır
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="examForm.invalid">
+      Yadda saxla
+    </button>
+  </form>
+</mat-card>

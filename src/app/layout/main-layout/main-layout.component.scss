@@ -1,0 +1,39 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+.sidebar {
+  width: 220px;
+  background: #2c3e50;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.menu a.active, .menu a:hover {
+  background: #34495e;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 2rem;
+  background: #ecf0f1;
+}

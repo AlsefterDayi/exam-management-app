@@ -1,0 +1,19 @@
+{
+  "subjects": [
+    { "id": 1, "name": "Riyaziyyat","teacher":"Abbas Abbasov", "class": 7 },
+    { "id": 2, "name": "Fizika", "teacher":"Qedem Qedemov", "class": 8 }
+  ],
+  "students": [
+    { "id": 1, "name": "Elvin", "surname": "Quliyev", "class": 7 },
+    { "id": 2, "name": "Aysel", "surname": "Məmmədova", "class": 8 }
+  ],
+  "exams": [
+    {
+      "id": 1,
+      "subjectId": 1,
+      "studentId": 1,
+      "examDate": "2025-04-01T00:00:00.000Z",
+      "grade": 4
+    }
+  ]
+}

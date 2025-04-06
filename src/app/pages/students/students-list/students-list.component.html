@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-toolbar color="primary">
+    <span>Şagirdlər Siyahısı</span>
+    <span class="spacer"></span>
+    <a mat-button color="primary" routerLink="/students/add">
+      <mat-icon>add</mat-icon> Yeni Şagird
+    </a>
+  </mat-toolbar>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="students" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Nömrə </th>
+        <td mat-cell *matCellDef="let student"> {{ student.id }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Adı </th>
+        <td mat-cell *matCellDef="let student"> {{ student.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="surname">
+        <th mat-header-cell *matHeaderCellDef> Soyadı </th>
+        <td mat-cell *matCellDef="let student"> {{ student.surname }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="class">
+        <th mat-header-cell *matHeaderCellDef> Sinif </th>
+        <td mat-cell *matCellDef="let student"> {{ student.class }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Əməliyyatlar </th>
+        <td mat-cell *matCellDef="let student">
+          <button mat-icon-button color="primary" [routerLink]="['/students/edit', student.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteStudent(student.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['id', 'name', 'surname', 'class', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'surname', 'class', 'actions'];"></tr>
+    </table>
+  </div>
+</mat-card>

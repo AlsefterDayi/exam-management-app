@@ -1,0 +1,49 @@
+<mat-card class="subjects-card">
+  <mat-toolbar color="primary">
+    <span>Dərslərin Siyahısı</span>
+    <span class="spacer"></span>
+    <a mat-button color="primary" class="add-button" routerLink="/subjects/add">
+      <mat-icon>add</mat-icon> Yeni Dərs
+    </a>
+  </mat-toolbar>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="subjects" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Nömrə </th>
+        <td mat-cell *matCellDef="let subject"> {{subject.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Adı </th>
+        <td mat-cell *matCellDef="let subject"> {{subject.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="class">
+        <th mat-header-cell *matHeaderCellDef> Sinif </th>
+        <td mat-cell *matCellDef="let subject"> {{subject.class}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="teacher">
+        <th mat-header-cell *matHeaderCellDef> Müəllim </th>
+        <td mat-cell *matCellDef="let subject"> {{subject.teacher}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Əməliyyatlar </th>
+        <td mat-cell *matCellDef="let subject">
+          <button mat-icon-button color="primary" [routerLink]="['/subjects/edit', subject.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteSubject(subject.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</mat-card>
