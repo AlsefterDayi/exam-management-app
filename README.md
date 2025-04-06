@@ -10,7 +10,6 @@ Bu layihə, müəllimlər və tələbələr üçün imtahanların idarə olunmas
 
 ## Texnologiyalar
 - **Frontend**: Angular
-- **Backend**: JSON Server (mock server)
 - **Forms**: Reactive Forms
 - **UI**: Angular Material
 
